@@ -14,3 +14,8 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    @property
+    def short_description(self):
+        description = self.description.strip()
+        return description[:41]
