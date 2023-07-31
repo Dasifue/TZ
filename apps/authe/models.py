@@ -7,7 +7,7 @@ class User(AbstractUser):
     image = models.ImageField("Avatar", upload_to="media/uploads/avatar/", default="media/default/avatar.png")
     email = models.EmailField("Email address", unique=True, null=True)
     phone = models.CharField("Phone number", max_length=20, null=True)
-    address = models.CharField("Address", null=True)
+    address = models.CharField("Address", max_length=255, null=True)
 
     class Meta:
         verbose_name = "User"
