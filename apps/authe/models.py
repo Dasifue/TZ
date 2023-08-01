@@ -6,11 +6,11 @@ from ..posts.models import Product
 
 class User(AbstractUser):
 
-    image = models.ImageField("Avatar", upload_to="media/uploads/avatar/", default="media/default/avatar.png")
+    image = models.ImageField("Avatar", upload_to="media/uploads/avatars/", default="media/default/avatar.png")
     email = models.EmailField("Email address", unique=True, null=True)
     phone = models.CharField("Phone number", max_length=20, null=True)
     address = models.CharField("Address", max_length=255, null=True)
-    posts = models.ManyToManyField(Product, related_name="users")
+    favorites = models.ManyToManyField(Product, related_name="users")
 
     class Meta:
         verbose_name = "User"
