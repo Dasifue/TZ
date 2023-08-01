@@ -1,5 +1,7 @@
 from django.urls import path
 
+# Регистрируем все views в  endpoint'ах
+
 from .views import (
     ProductsListApiView,
     ProductsDetailsApiView,

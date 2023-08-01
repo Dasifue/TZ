@@ -12,14 +12,20 @@ from .serializers import (
     )
 
 class UsersListApiView(ListAPIView):
+    """
+    View выводит всех пользователей в массиве при GET запросе
+    """
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
 class UserRegistrationApiView(APIView):
+    """
+    View направлена на регистрацию пользователя
+    """
     serializer_class = UserRegistrationSerializer
     queryset = User.objects.all()
 
-    def post(self, request):
+    def post(self, request): #Метод принимает POST запрос с JSON данными. Обрабатывает их и создаёт пользователя
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             # serializer.save()
