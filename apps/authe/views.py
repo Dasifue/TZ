@@ -26,8 +26,11 @@ class UserRegistrationApiView(APIView):
     queryset = User.objects.all()
 
     def post(self, request): #Метод принимает POST запрос с JSON данными. Обрабатывает их и создаёт пользователя
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            # serializer.save()
+        serializer = self.serializer_class(data=request.data) #Передаём JSON в сериализатор
+        if serializer.is_valid(): #Проверяем данные на валидность
+            serializer.save() #Сохраняем пользователя
+            #Возвращаем ответ пользователю об успешном запросе
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        #Если данные не прогли проверку, то возвращается ошибка
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

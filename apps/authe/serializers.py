@@ -41,6 +41,19 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         
         # Если все данные валидны, то они возвращаюстя методом
         return data
+    
+    def create(self, validated_data):
+        """
+        Метод используется для создания пользователя
+        """
+        user = User.objects.create( 
+            username=validated_data["username"],
+            email=validated_data["email"]
+        ) #Выполняется queryset запрос на создание объекта в бд
+        user.set_password(validated_data["password1"]) #Хешируется пароль
+        user.save() #пользователь сохраняется в бд
+
+        return user
         
 
 
