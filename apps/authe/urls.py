@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from .views import (
     UsersListApiView,
@@ -7,5 +7,6 @@ from .views import (
 
 urlpatterns = [
     path("user/list/", UsersListApiView.as_view()),
-    path("user/register/", UserRegistrationApiView.as_view())
+    path("user/register/", UserRegistrationApiView.as_view()),
+    path("user/", include("rest_framework.urls")),
 ]
