@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 from dotenv import load_dotenv
-from os import getenv
+import os
 
 load_dotenv(".env")
 
@@ -86,11 +86,11 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': getenv('DATABASE'),        
-        'USER': getenv('DB_ADMIN'),       
-        'PASSWORD': getenv('PASSWORD'), 
-        'HOST': getenv('HOST'),                
-        'PORT': getenv('PORT'),               
+        'NAME': os.getenv('DATABASE'),        
+        'USER': os.getenv('DB_ADMIN'),       
+        'PASSWORD': os.getenv('PASSWORD'), 
+        'HOST': os.getenv('HOST'),                
+        'PORT': os.getenv('PORT'),               
     }
     
 }
@@ -140,8 +140,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "authe.User"
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'uploads'
+MEDIA_ROOT = os.path.join(BASE_DIR)
+MEDIA_URL = ''
 
 
 REST_FRAMEWORK = {
