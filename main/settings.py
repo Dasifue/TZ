@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'apps.authe.apps.AutheConfig',
     'apps.posts.apps.PostsConfig',
 
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +142,11 @@ AUTH_USER_MODEL = "authe.User"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'uploads'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}

@@ -8,5 +8,6 @@ from .views import (
 urlpatterns = [
     path("user/list/", UsersListApiView.as_view()),
     path("user/register/", UserRegistrationApiView.as_view()),
-    path("user/", include("rest_framework.urls")),
+    path("user/session/", include("rest_framework.urls")),
+    path("user/djoser/", include("djoser.urls.authtoken")),
 ]
